@@ -1,8 +1,21 @@
 \documentclass[french]{article}
 \usepackage{ae, lmodern}
+\usepackage[francais]{babel}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-
+\usepackage{todonotes}
+\usepackage{fancyhdr}
+\usepackage{soul}
+\usepackage{ulem}
+\usepackage{color}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{verbatim}
+\usepackage{moreverb}
+\usepackage{listings}
+\usepackage{url}
+\usepackage{array}
+\usepackage{longtable}
 
 
 
@@ -26,7 +39,60 @@ Nous effectuerons 3 tests pour l'étude du caractère pseudo aléatoire et 3 aut
 Nous nous servirons du langage Python pour effectuer nos différents tests.
 
 \section{Etude de $\pi$ }
-Nous allons désormais passer à l'étude du caractère pseudo-aléatoire des décimales de $\pi$
+\subsection{Approche Naïve}
+Nous savons que $\pi$ contient un nombre infinis de décimales. En partant de ça, supposons que nos décimales suivent une loi uniforme. En partant de cette supposition, nous allons tracer un histogramme comprenant les occurrences de chaque digit parmi le million de décimales fournies sur la plateforme Moodle.
+\\
+Le nombre d'occurrence théorique de chaque digit devrait être de 100 000. En effet, on a 10 digits ( de 0 à 9), avec une probabilité de 1/10 de sortir.
+\\
+\\
+Regardons maintenant notre premier histogramme et débattons ensuite des premières constatations.
+
+\begin{center}
+	\includegraphics[scale=0.30]{SimuProjet/Archives/Images/histo_zoom}
+\end{center}
+
+Mettons désormais les données sous la forme d'un tableau.
+
+\begin{longtable}{|c|c|c|c|c|c|c|c|c|c|}
+	\hline
+	& \multicolumn{3}{c|}{\textbf{Résultats}} \\ 
+	\hline 
+	\textbf{Digit}  & \textbf{Observé} & \textbf{Attendu} & \textbf{Erreur en \%} \\ 
+	\hline 
+	$$0$$ & 99 959 & 100 000 & 0.041\\ 
+	\hline 
+	$$1$$ & 99 758 & 100 000 & 0.24\\ 
+	\hline 
+	$$2$$ & 100 026 & 100 000 & 0.026 \\ 
+	\hline 
+	$$3$$ & 100 229 & 100 000 & 0.229\\ 
+	\hline 
+	$$4$$ & 100 230 & 100 000 & 0.230\\ 
+	\hline 
+	$$5$$ & 100 359 & 100 000 & 0.359\\ 
+	\hline 
+	$$6$$ & 99 548 & 100 000 & 0.452\\ 
+	\hline 
+	$$7$$ & 99 800 & 100 000 & 0.2\\ 
+	\hline 
+	$$8$$ & 99 985 & 100 000 & 0.015\\ 
+	\hline 
+	$$9$$ & 100 106 & 100 000 & 0.106\\ 
+	\hline
+\end{longtable}
+
+On peut constater qu'entre les résultats observés et attendus, il y a à chaque fois une
+erreur inférieur à 0,5\%
+\\
+Ce qui nous encourage à penser que nos données suivent bien une loi uniforme même si cela ne 
+constitue pas une preuve.
+\\
+Nous allons bientôt passer à l'étude du caractère pseudo-aléatoire des décimales de $\pi$
 par l'intermédiaire de 3 tests différents.
+\\
+\subsection{Test de $\chi^{2}$ }
+Le premier test que nous allons effectuer est le test du \textbf{$\chi^{2}$}. Ce dernier est un test statistique qui va permettre de tester si une série de données est susceptible de suivre une loi de probabilité.
+\\
+Pour effectuer ce test, nous allons devoir regrouper ces données dans différentes classes.
 
 \end{document}

@@ -1,0 +1,21 @@
+
+def toData () :
+	fichier = open("../Enonce/pi6.txt", "r")
+	res = []
+	firstLine = True
+	for line in fichier :
+		if firstLine :
+			firstLine = False
+			continue
+			
+		for i in range(len(line)) :
+			if line[i]!="\n" :
+				res.append(int(line[i]))
+	fichier.close()
+	return res
+
+if __name__ == "__main__":
+	res = toData()
+	print(len(res))
+	print(res[0:5])
+
