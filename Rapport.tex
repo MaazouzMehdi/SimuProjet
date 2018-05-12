@@ -91,8 +91,46 @@ Nous allons bientôt passer à l'étude du caractère pseudo-aléatoire des déc
 par l'intermédiaire de 3 tests différents.
 \\
 \subsection{Test de $\chi^{2}$ }
-Le premier test que nous allons effectuer est le test du \textbf{$\chi^{2}$}. Ce dernier est un test statistique qui va permettre de tester si une série de données est susceptible de suivre une loi de probabilité.
+Le premier test que nous allons effectuer est le test du \textbf{$\chi^{2}$}. Ce dernier est un test statistique qui va permettre de vérifier si une série de données est susceptible de suivre une loi de probabilité.
 \\
 Pour effectuer ce test, nous allons devoir regrouper ces données dans différentes classes.
+Voici un rappel théorique :
+
+	\begin{center}
+		\includegraphics[scale=0.60]{SimuProjet/Archives/Images/khi2}
+	\end{center}
+	
+On peut y apercevoir \textit{r} qui correspond au nombre de classes. \\
+\textit{N$p_{i}$} qui correspond aux nombres d'occurrences théoriques. \\
+\textit{$n_{i}$} qui correspond aux nombres d'occurrences observées.
+\\
+\\
+Partons désormais de notre hypothèse nulle nommée $H_{0}$ = {nos décimales de $\pi$ suivent une loi uniforme}.
+\\
+Dans notre cas, \textit{r} sera fixé à 10, car nous considérerons une classe par digit, et \textit{N$p_{i}$} sera fixé à 100 000.\\ 
+Quant à \textit{$n_{i}$}, ses différentes valeurs seront issues du nombre d'occurrence observés dans l'histogramme présenté précédemment.
+Comme le demande le test de \textbf{$\chi^{2}$}, nous devons fixer une probabilité $\alpha$, appeler erreur de première espèce, de rejeter l'hypothèse nulle $H_{0}$.
+\\
+Une fois ce paramètre $\alpha$ fixé, nous pouvons désormais vérifier si $H_{0}$ est acceptée
+si $K_{n}$ <= $\chi^{2}_{9,\alpha-1}$ où 9 est le degré de liberté calculé en faisant \textit{r}-1 (nombre de classes -1).
+
+Voici les différents résultats obtenus en fonction de différentes valeurs pour $\alpha$.
+\\
+\begin{longtable}{|c|c|c|c|c|c|c|c|c|c|}
+	\hline
+	& \multicolumn{3}{c|}{\textbf{Résultats}} \\ 
+	\hline 
+	\textbf{$\alpha$}  & $K_{n}$ & $\chi^{2}_{9,\alpha-1}$ & \textbf{Resultat} \\ 
+	\hline 
+	$$0.001$$ & 5.50908 & 27.877 & Reussite\\ 
+	\hline 
+	$$0.025$$ & 5.50908 & 19.023 & Reussite\\ 
+	\hline 
+	$$0.1$$ & 5.50908 & 14.684 & Reussite \\ 
+	\hline 
+\end{longtable}
+
+On peut constater que les tests réussis, nous sommes donc confortés dans notre supposition qui était que les décimales de $\pi$ suivent une loi uniforme.
+\\
 
 \end{document}
