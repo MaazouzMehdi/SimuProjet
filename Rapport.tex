@@ -133,4 +133,46 @@ Voici les différents résultats obtenus en fonction de différentes valeurs pou
 On peut constater que les tests réussis, nous sommes donc confortés dans notre supposition qui était que les décimales de $\pi$ suivent une loi uniforme.
 \\
 
+\subsection{Test du Poker}
+Une fois le test du $\chi^{2}$ effectué, passons maintenant à un autre test qui va s'appuyer sur ce dernier, le test du Poker. Pour ce faire, nous allons diviser notre million de décimales en 200 000 blocs contenant chacun 5 décimales. Nous dirons que chaque bloc contient une séquence.
+\\
+\\
+Une fois les blocs obtenus, nous allons les classer en fonction du \textit{nombre} de digit différents par bloc. Ce \textit{nombre} est appelé \textit{r} et est compris entre 1 et 5.
+\\
+En effet, une séquence peut seulement contenir un digit différent ( par exemple : 11111) mais également 5 digits différents (12345).
+\\
+Nous allons désormais passer au calcul du $\chi^{2}$ en se basant sur le nombre de \textit{Stirling} pour
+effectuer la comparaison. Ce dernier se définit comme étant le \textit{nombre de manières possibles de constituer r paquets avec k nombres}.
+\\
+Par le rappel théorique (\textit{voir cours}), nous obtenons $P_{r}$, la probabilité d'avoir \textit{r}.
+
+	\begin{center}
+		\includegraphics[scale=0.60]{SimuProjet/Archives/Images/probaR}
+	\end{center}
+
+Avec \textbf{K} la longueur de la séquence , \textbf{d} le nombre de digits possibles et enfin \textbf{r}
+définis plus haut.
+\\
+Pour effectuer nos calculs, nous fixerons \textbf{K} à 5 et \textbf{d} à 10.
+\\
+Une fois les probabilités obtenues, multiplions ces dernières par le nombre de paquet (200 000).
+
+\centering
+	\begin{tabular}{|r|r|r|}
+		\hline
+		r & valeur théorique & valeur calculée\\
+		\hline
+		1 & 20 & 13\\
+		2 & 2700 & 2644\\
+		3 & 36000 & 36172\\
+		4 & 100800 & 100670\\
+		5 & 60480 & 60501\\
+		\hline
+	\end{tabular}
+
+
+	\begin{center}
+		\includegraphics[scale=0.30]{SimuProjet/Archives/Images/histo_poker}
+	\end{center}
+
 \end{document}
