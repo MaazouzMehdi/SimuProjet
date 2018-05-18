@@ -38,6 +38,12 @@ et de comparer ce dernier au générateur par défaut de Python. \\
 Nous effectuerons 3 tests pour l'étude du caractère pseudo aléatoire et 3 autres tests pour la comparaison avec le générateur par défaut de Python. Ces derniers seront décris ci-dessous. \\
 Nous nous servirons du langage Python pour effectuer nos différents tests.
 
+\subsection{Fichiers Annexes}
+Afin de réaliser ce projet, nous allons devoir réaliser quelques scripts pour les différents tests qui 
+vont suivre ci-dessous. Pour ce faire, nous nous sommes servis du langage de programmation Python dans sa version 2.7. 
+\\
+Son module Gnuplot va également servir pour les graphes qui seront tracés au fur et à mesure. D'autres modules de Python tel que le module Math ou Sympy ont été utilisés.
+
 \section{Etude de $\pi$ }
 \subsection{Approche Naïve}
 Nous savons que $\pi$ contient un nombre infinis de décimales. En partant de ça, supposons que nos décimales suivent une loi uniforme. En partant de cette supposition, nous allons tracer un histogramme comprenant les occurrences de chaque digit parmi le million de décimales fournies sur la plateforme Moodle.
@@ -175,4 +181,13 @@ Une fois les probabilités obtenues, multiplions ces dernières par le nombre de
 		\includegraphics[scale=0.30]{SimuProjet/Archives/Images/histo_poker}
 	\end{center}
 
+\section{Générateur de nombre pseudo-aléatoire}
+\subsection{Enonce}
+La deuxième partie de notre projet consiste à implémenter un générateur de nombre pseudo-aléatoire et ensuite, de le comparer avec le générateur par défaut de Python (Mersenne Twister). Plus concrètement, nous devons implémenter un générateur qui devra, comme son nom l'indique, générer des nombres compris entre 0 et 1
+de manière uniforme.
+
+\subsection{Implémentation}
+Nous savons que l'ordinateur est une machine déterministe. Cependant, nous pouvons faire ressortir une composante aléatoire en utilisant le temps écoulé, en millisecondes, depuis le $1^{er}$ Janvier 1970.
+\\
+Etant donné que les premières décimales de  $\pi$ nous sont fournies, nous allons pouvoir nous en servir pour l'implémentation de notre générateur. 
 \end{document}
