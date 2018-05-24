@@ -50,7 +50,8 @@ class PseudoRandomGenerator(object):
     def random(self):
         num=self.num_list[self.seed]
         val=math.pow(num,4)
-        res=float("0."+str(int(val)))
+        strval=str(int(val))
+        res=float("0."+strval[1:])
         self.seed+=1
         return res
 
@@ -61,11 +62,11 @@ class PseudoRandomGenerator(object):
             listrand.append(self.random())
             count+=1
         return listrand
-    
-def getRandomList(self,num):
+
+def getRandomList(num):
     listrand=[]
     count=0
     while count!=num:
-        listrand.append(self.random())
+        listrand.append(random.random())
         count+=1
     return listrand
