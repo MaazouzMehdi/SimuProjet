@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 import math
+import logging
 from scipy.stats import chi2
 import matplotlib.pyplot as plt
 
@@ -28,16 +29,19 @@ def calculate_histo(list):
             occur[9]+=1
     return occur
 
-def testchi2(value,expected, alpha=0.05):
+def testchi2(value, alpha=0.05):
 
-    n=(min(len(value),len(expected)))
+    n=(len(value))
     chi=0
+    tot=0
     for i in range(n):
-        dif=value[i]-expected[i]
-        chi+=math.pow(dif,2)*1.0/expected[i]
+        tot+=value[i]
+    for i in range(n):
+        dif=value[i]-tot/n
+        den=math.sqrt(tot/n)
+        chi+=math.pow(dif/den,2)
     critical = chi2.ppf(1-alpha,n-1)
     result= chi <critical
-
 
     return result
 
