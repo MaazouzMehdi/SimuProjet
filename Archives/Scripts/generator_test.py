@@ -1,7 +1,7 @@
 #!/usr/bin/env python
-
+import math
 from scipy.stats import chi2
-
+import matplotlib.pyplot as plt
 
 def calculate_histo(list):
     occur=[0]*10
@@ -28,4 +28,16 @@ def calculate_histo(list):
             occur[9]+=1
     return occur
 
-def chi2()
+def testchi2(value,expected, alpha=0.05):
+
+    n=(min(len(value),len(expected)))
+    chi=0
+    for i in range(n):
+        dif=value[i]-expected[i]
+        chi+=math.pow(dif,2)*1.0/expected[i]
+    critical = chi2.ppf(1-alpha,n-1)
+    result= chi <critical
+
+
+    return result
+
