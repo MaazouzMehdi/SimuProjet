@@ -105,3 +105,37 @@ def gapTest(value, a=0.0,b=0.5,t=10,alpha=0.05):
     len_expec_sequ[t-1]=n_gap*math.pow(1-p,t-1)
     return testchi2expected(len_sequence,len_expec_sequ,alpha)
 
+def binomial(n, k) :
+  return math.factorial(n) / math.factorial(k) / math.factorial(n-k)
+
+def stirling(k, r) :
+    return sum((-1)**(r-i)*binomial(r, i)*i**k for i in range(r+1)) / math.factorial(r)
+
+def coupon_test(value,d=10,t=40,alpha=0.05):
+    length = len(value)
+    curr_values=[0]*(t-(d-1)-1)
+    complete_sequ=0
+    occurence=[False]*d
+    count=0
+    count_sequ=0
+
+    for i in range(length):
+        num=int(math.floor(d*value[i]))
+        count+=1
+        if occurence[num]==False:
+            occurence[num]=True
+            complete_sequ+=1
+            if count_sequ==d:
+                complete_sequ+=1
+                if count>=t-1:
+                    curr_values[t-d-1]+=1
+                else:
+                    curr_values[count-d]+=1
+                occurence=[False]*d
+                count=0
+                count_sequ=0
+    expected=[0]*(t-(d-1)-1)
+    for i in range(len(expected)-1):
+        expected[i]=count_sequ*((math.factorial(d)/math.pow(d,(i+d)))*stirling((i+d)-1,d-1))
+    expected[len(expected)-1]=complete_sequ*(1.0-(math.factorial(d)/math.pow(d,(len(expected)-1+d)-2))*stirling((len(expected)-1+d)-2,d))
+    return testchi2expected(curr_values,expected,alpha)
