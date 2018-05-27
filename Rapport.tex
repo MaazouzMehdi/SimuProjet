@@ -54,7 +54,7 @@ Le nombre d'occurrence théorique de chaque digit devrait être de 100 000. En e
 Regardons maintenant notre premier histogramme et débattons ensuite des premières constatations.
 
 \begin{center}
-	\includegraphics[scale=0.30]{SimuProjet/Archives/Images/histo_zoom}
+	\includegraphics[scale=0.30]{Archives/Images/histo_zoom}
 \end{center}
 
 Mettons désormais les données sous la forme d'un tableau.
@@ -103,7 +103,7 @@ Pour effectuer ce test, nous allons devoir regrouper ces données dans différen
 Voici un rappel théorique :
 
 	\begin{center}
-		\includegraphics[scale=0.60]{SimuProjet/Archives/Images/khi2}
+		\includegraphics[scale=0.60]{Archives/Images/khi2}
 	\end{center}
 	
 On peut y apercevoir \textit{r} qui correspond au nombre de classes. \\
@@ -153,7 +153,7 @@ effectuer la comparaison. Ce dernier se définit comme étant le \textit{nombre 
 Par le rappel théorique (\textit{voir cours}), nous obtenons $P_{r}$, la probabilité d'avoir \textit{r}.
 
 	\begin{center}
-		\includegraphics[scale=0.60]{SimuProjet/Archives/Images/probaR}
+		\includegraphics[scale=0.60]{Archives/Images/probaR}
 	\end{center}
 
 Avec \textbf{K} la longueur de la séquence , \textbf{d} le nombre de digits possibles et enfin \textbf{r}
@@ -178,8 +178,175 @@ Une fois les probabilités obtenues, multiplions ces dernières par le nombre de
 
 
 	\begin{center}
-		\includegraphics[scale=0.30]{SimuProjet/Archives/Images/histo_poker}
+		\includegraphics[scale=0.30]{Archives/Images/histo_poker}
 	\end{center}
+
+
+\subsection{Test du collectionneur de coupons}
+Le dernier test que nous allons employer repose sur le principe suivant. 
+\\
+Tout d'abord, nous allons parcourir les décimales de $\pi$ avec pour objectif de construire des séquences.
+Une séquence étant construite dès que l'on a parcouru une fois tous les digits possible (de 0 à 9 compris).
+Il suffit ensuite de recommencer la procédure avec les décimales suivantes.
+\\
+On peut facilement comprendre que nous obtiendrons des séquences avec des tailles différentes.
+\\
+
+Afin de vérifier si nos séquences suivent bien une loi uniforme, nous devons tout d'abord calculé la probabilité $S_{r}$, autrement dit, la probabilité d'avoir une séquence de taille \textit{r} ayant tous nos digits est donnée par la formule suivante :
+
+	\begin{center}
+		\includegraphics[scale=0.40]{Archives/Images/coupons}
+	\end{center}
+
+d représente le nombre de digits possibles, ici, il sera égal à 10.
+Afin d'obtenir la valeur théorique pour chaque taille de séquence \textit{$ r_{i} $}, il suffit de multiplier la probabilité $S_{r_{i}}$  par le nombre total de séquences obtenues.
+\\
+
+La dernière étape de notre test consistera à comparer cette valeur théorique à notre valeur obtenue à l'aide du test du $\chi^{2}$.
+
+Nos longueurs de séquences formeront nos classes pour le test de $\chi^{2}$. Nous avons 100 classes, cependant, les séquences ayant une taille allant de 1 à 9 ont une valeur théorique et observée de 0. Elles sont donc inutiles à prendre en considération pour le test de $\chi^{2}$.  Le degré de liberté sera donc égal à 91-1 ($\chi^{2}_{91,\alpha-1}$).
+\newpage
+\begin{figure}[h]
+	\centering
+	\begin{tabular}{|r|r|r|}
+		\hline
+		Tailles de séquences & Valeur théorique & Valeur observée\\
+		\hline
+		10 & 12.39706944 & 12\\
+		11 & 55.78681248 & 62\\
+		12 & 143.186152032 & 154\\
+		13 & 276.144721776 & 265\\
+		14 & 445.677125782 & 496\\
+		15 & 636.605631934 & 645\\
+		16 & 832.196551932 & 869\\
+		17 & 1017.53193425 & 1008\\
+		18 & 1181.29471772 & 1150\\
+		19 & 1316.26375399 & 1341\\
+		20 & 1418.98670105 & 1354\\
+		21 & 1489.0470501 & 1482\\
+		22 & 1528.21745078 & 1576\\
+		23 & 1539.67053158 & 1515\\
+		24 & 1527.32748565 & 1543\\
+		25 & 1495.36642995 & 1456\\
+		26 & 1447.88033297 & 1470\\
+		27 & 1388.65981367 & 1345\\
+		28 & 1321.07229861 & 1317\\
+		29 & 1248.01086229 & 1224\\
+		30 & 1171.89036844 & 1145\\
+		31 & 1094.67343335 & 1105\\
+		32 & 1017.91330149 & 1018\\
+		33 & 942.804564011 & 968\\
+		34 & 870.235668768 & 883\\
+		35 & 800.839427633 & 817\\
+		36 & 735.039345563 & 772\\
+		37 & 673.090709825 & 680\\
+		38 & 615.116112395 & 640\\
+		39 & 561.135537135 & 522\\
+		40 & 511.091408294 & 506\\
+		41 & 464.869130432 & 456\\
+		42 & 422.313697469 & 406\\
+		43 & 383.242942754 & 379\\
+		44 & 347.457965104 & 351\\
+		45 & 314.751212876 & 324\\
+		46 & 284.912648965 & 280\\
+		47 & 257.734360295 & 266\\
+		48 & 233.013919451 & 219\\
+		49 & 210.556755384 & 212\\
+		50 & 190.177745431 & 185\\
+		\hline
+	\end{tabular}
+	\caption{Tableau de Test du CDC : Les décimales de Pi 1}
+\end{figure}
+
+\newpage
+\begin{figure}[h]
+	\centering
+	\begin{tabular}{|r|r|r|}
+		\hline
+		Tailles de séquences & Valeur théorique & Valeur observée\\
+		\hline
+		51 & 171.702202299 & 197\\
+		52 & 154.966396843 & 142\\
+		53 & 139.817729962 & 148\\
+		54 & 126.114644036 & 115\\
+		55 & 113.726345551 & 113\\
+		56 & 102.532395165 & 87\\
+		57 & 92.4222090177 & 95\\
+		58 & 83.294505053 & 77\\
+		59 & 75.0567200775 & 80\\
+		60 & 67.624416886 & 69\\
+		61 & 60.9206957291 & 66\\
+		62 & 54.8756204189 & 62\\
+		63 & 49.4256662748 & 59\\
+		64 & 44.5131947077 & 44\\
+		65 & 40.0859574053 & 39\\
+		66 & 36.0966316837 & 34\\
+		67 & 32.5023875297 & 32\\
+		68 & 29.2644860878 & 22\\
+		69 & 26.3479087976 & 22\\
+		70 & 23.7210160015 & 27\\
+		71 & 21.3552335886 & 25\\
+		72 & 19.2247660837 & 27\\
+		73 & 17.3063345114 & 17\\
+		74 & 15.5789373362 & 8\\
+		75 & 14.0236327962 & 12\\
+		76 & 12.6233409926 & 12\\
+		77 & 11.3626641589 & 5\\
+		78 & 10.2277236148 & 13\\
+		79 & 9.20601199223 & 9\\
+		80 & 8.28625941323 & 12\\
+		81 & 7.45831238842 & 8\\
+		82 & 6.71302429704 & 7\\
+		83 & 6.04215639528 & 8\\
+		84 & 5.43828838508 & 4\\
+		\hline
+	\end{tabular}
+	\caption{Tableau de Test du CDC : Les décimales de Pi 3}
+\end{figure}
+
+\begin{figure}[h]
+	\centering
+	\begin{tabular}{|r|r|r|}
+		\hline
+		Tailles de séquences & Valeur théorique & Valeur observée\\
+		\hline
+		85 & 4.89473765491932 & 4\\
+		86 & 4.40548637952699 & 5\\
+		87 & 3.96511573604793 & 6\\
+		88 & 3.56874655969782 & 3\\
+		89 & 3.21198582270483 & 1\\
+		90 & 2.89087837643692 & 0\\
+		91 & 2.60186344817007 & 1\\
+		92 & 2.34173543125690 & 4\\
+		93 & 2.10760855073593 & 4\\
+		94 & 1.89688502594326 & 0\\
+		95 & 1.70722638771169 & 1\\
+		96 & 1.53652764052733 & 1\\
+		97 & 1.38289398981167 & 4\\
+		98 & 1.244619881547491 & 0\\
+		99 & 1.12017012599947 & 2\\
+		\hline
+	\end{tabular}
+	\caption{Tableau de Test du CDC : Les décimales de Pi 3}
+\end{figure}
+
+\newpage
+Nous pouvons constater que le tableau affiche les résultats à partir des séquences de longueur 10. En effet, il est inutile de prendre en considération les séquences de longueur inférieure à 10 car il est impossible de trouver une séquence contenant les 10 digits différents (0 à 9) si la séquence a une longueur inférieure à 10.
+
+\\
+\begin{longtable}{|c|c|c|c|c|c|c|c|c|c|}
+	\hline
+	& \multicolumn{3}{c|}{\textbf{Résultats}} \\ 
+	\hline 
+	\textbf{$\alpha$}  & $K_{n}$ & $\chi^{2}_{9,\alpha-1}$ & \textbf{Resultat} \\ 
+	\hline 
+	$$0.001$$ & 78.792 & 137.21 & Reussite\\ 
+	\hline 
+	$$0.025$$ & 78.792 & 118.14 & Reussite\\ 
+	\hline 
+	$$0.1$$ & 78.792 & 107.57 & Reussite \\ 
+	\hline 
+\end{longtable}
 
 \section{Générateur de nombre pseudo-aléatoire}
 \subsection{Enonce}
@@ -189,5 +356,5 @@ de manière uniforme.
 \subsection{Implémentation}
 Nous savons que l'ordinateur est une machine déterministe. Cependant, nous pouvons faire ressortir une composante aléatoire en utilisant le temps écoulé, en millisecondes, depuis le $1^{er}$ Janvier 1970.
 \\
-Etant donné que les premières décimales de  $\pi$ nous sont fournies, nous allons pouvoir nous en servir pour l'implémentation de notre générateur. 
+Etant donné que les premières décimales de  $\pi$ nous sont fournies, nous allons pouvoir nous en servir pour l'implémentation de notre générateur.
 \end{document}
