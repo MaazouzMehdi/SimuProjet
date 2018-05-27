@@ -31,34 +31,58 @@
 \newpage
 
 \section{Introduction}
-Le travail que nous devons présenter consiste à étudier le caractère pseudo-aléatoire des décimales de $\pi$
-en utilisant les techniques vues au cours et ce, suivant une lois uniforme. \\
-De plus, nous allons devoir nous servir de ces décimales pour implémenter un générateur de loi uniforme [0,1[ 
-et de comparer ce dernier au générateur par défaut de Python. \\
-Nous effectuerons 3 tests pour l'étude du caractère pseudo aléatoire et 3 autres tests pour la comparaison avec le générateur par défaut de Python. Ces derniers seront décris ci-dessous. \\
-Nous nous servirons du langage Python pour effectuer nos différents tests.
-
-\subsection{Fichiers Annexes}
-Afin de réaliser ce projet, nous allons devoir réaliser quelques scripts pour les différents tests qui 
-vont suivre ci-dessous. Pour ce faire, nous nous sommes servis du langage de programmation Python dans sa version 2.7. 
+Dans le cadre du cours de \textit{Simulation sur ordinateur} dispensé et corrigé par \textit{Monsieur Alain BYUS}, tous les étudiants sont amenés à réaliser un travail.
 \\
-Son module Gnuplot va également servir pour les graphes qui seront tracés au fur et à mesure. D'autres modules de Python tel que le module Math ou Sympy ont été utilisés.
+\\
+Ce dernier consiste à : 
+\\
+
+     - Etudier le caractère pseudo-aléatoire des décimales de $\pi$ en utilisant les techniques vues au cours afin de déterminer si ces dernières suivent une loi uniforme.
+     \\
+     
+     -Implémenter un générateur de loi uniforme dans l'intervalle [0,1[ à l'aide des décimales de $\pi$.
+     \\
+     
+     -Comparer ce dernier au générateur par défaut de Python.
+\\
+\\
+Nous avons scindé le projet en 2 parties, la première concerne l'étude du caractère pseudo-aléatoire des décimales
+de $\pi$ à l'aide de 3 tests différents.
+\\
+La deuxième partie concerne non seulement l'explication et l'implémentation de notre générateur aléatoire, mais également sa comparaison avec le générateur par défaut de Python.
+\\
+\\
+\textbf{Remarque :} un fichier contenant le premier million des décimales de $\pi$ nous a été fourni.
+
+\subsection{Logiciels utilisés}
+-Le langage de programmation \textbf{Python} dans sa version \textbf{2.7} a été utilisé dans la réalisation de nos différents scripts.
+\\
+
+-Le logiciel \textbf{Gnuplot 5.0} nous a servis dans la réalisation des différents histogrammes.
+\\
+
+-Le logiciel libre \textbf{TexStudio 5.5.1} nous a permis de rédiger ce rapport.
+\\
+
+-Notons enfin l'utilisation de modules de \textbf{Python} tel que \textbf{Math} ou encore \textbf{Sympy}.
 
 \section{Etude de $\pi$ }
 \subsection{Approche Naïve}
-Nous savons que $\pi$ contient un nombre infinis de décimales. En partant de ça, supposons que nos décimales suivent une loi uniforme. En partant de cette supposition, nous allons tracer un histogramme comprenant les occurrences de chaque digit parmi le million de décimales fournies sur la plateforme Moodle.
-\\
-Le nombre d'occurrence théorique de chaque digit devrait être de 100 000. En effet, on a 10 digits ( de 0 à 9), avec une probabilité de 1/10 de sortir.
+Pour notre première approche, nous allons tracer un histogramme contenant les occurrences de chacun des digits présents dans notre fichier fourni. Ensuite, nous comparerons ces occurrences observées avec les occurrences théoriques,attendues si nos données suivaient bien une loi uniforme. 
 \\
 \\
-Regardons maintenant notre premier histogramme et débattons ensuite des premières constatations.
+Le nombre d'occurrence théorique de chaque digit peut être calculé assez facilement. En effet, nous avons 10 digits (de 0 à 9), chacun ayant une probabilité valant 1/10 d'apparaître. Comme notre fichier contient 1 000 000 de décimales, la valeur attendue pour chaque digit est de 100 000.
+\\
+\\
+Regardons maintenant notre histogramme et débattons ensuite des premières constatations.
 
-\begin{center}
-	\includegraphics[scale=0.30]{Archives/Images/histo_zoom}
-\end{center}
+\begin{figure}[h!]
+	\hbox to\hsize{\hss\includegraphics[scale=0.38]{Archives/Images/histo_zoom}\hss}
+	\caption{\label{toucan}}
+\end{figure}
 
-Mettons désormais les données sous la forme d'un tableau.
-
+\newpage
+Mettons désormais les données dans un tableau afin de comparer les occurrences obtenues et théoriques.
 \begin{longtable}{|c|c|c|c|c|c|c|c|c|c|}
 	\hline
 	& \multicolumn{3}{c|}{\textbf{Résultats}} \\ 
@@ -93,32 +117,51 @@ erreur inférieur à 0,5\%
 Ce qui nous encourage à penser que nos données suivent bien une loi uniforme même si cela ne 
 constitue pas une preuve.
 \\
-Nous allons bientôt passer à l'étude du caractère pseudo-aléatoire des décimales de $\pi$
-par l'intermédiaire de 3 tests différents.
+Passons maintenant à des tests plus complets.
 \\
 \subsection{Test de $\chi^{2}$ }
 Le premier test que nous allons effectuer est le test du \textbf{$\chi^{2}$}. Ce dernier est un test statistique qui va permettre de vérifier si une série de données est susceptible de suivre une loi de probabilité.
 \\
-Pour effectuer ce test, nous allons devoir regrouper ces données dans différentes classes.
-Voici un rappel théorique :
 
+\subsubsection{Rappel Théorique}
+Afin de vérifier si notre échantillon suit une loi, prenons cette loi comme hypothèse nulle \textit{$H_{0}$}
 	\begin{center}
 		\includegraphics[scale=0.60]{Archives/Images/khi2}
 	\end{center}
-	
-On peut y apercevoir \textit{r} qui correspond au nombre de classes. \\
-\textit{N$p_{i}$} qui correspond aux nombres d'occurrences théoriques. \\
-\textit{$n_{i}$} qui correspond aux nombres d'occurrences observées.
+		
+   -\textit{r} correspond au nombre de classes. 
+   \\
+   -\textit{N$p_{i}$} correspond aux nombres d'occurrences théoriques. 
+   \\
+   -\textit{$n_{i}$} correspond aux nombres d'occurrences observées.
+   \\
+   -Le paramètre \textit{$\alpha$} représente l'erreur de première espèce, autrement dit, la probabilité de rejeter l'hypothèse nulle \textit{$H_{0}$} alors que cette dernière est vraie.
+   \\
+   -$\chi^{2}_{\textit{r}-1,\alpha-1}$ le degré de liberté.
 \\
 \\
-Partons désormais de notre hypothèse nulle nommée $H_{0}$ = {nos décimales de $\pi$ suivent une loi uniforme}.
+Si \textit{$K_{n}$} <$\chi^{2}$, alors on accepte notre hypothèse nulle.
 \\
-Dans notre cas, \textit{r} sera fixé à 10, car nous considérerons une classe par digit, et \textit{N$p_{i}$} sera fixé à 100 000.\\ 
-Quant à \textit{$n_{i}$}, ses différentes valeurs seront issues du nombre d'occurrence observés dans l'histogramme présenté précédemment.
-Comme le demande le test de \textbf{$\chi^{2}$}, nous devons fixer une probabilité $\alpha$, appeler erreur de première espèce, de rejeter l'hypothèse nulle $H_{0}$.
+Si \textit{$K_{n}$} > $\chi^{2}$, on la rejette.
 \\
-Une fois ce paramètre $\alpha$ fixé, nous pouvons désormais vérifier si $H_{0}$ est acceptée
-si $K_{n}$ <= $\chi^{2}_{9,\alpha-1}$ où 9 est le degré de liberté calculé en faisant \textit{r}-1 (nombre de classes -1).
+\subsubsection{Mise en pratique}
+Partons désormais de notre hypothèse nulle :
+\\
+\\
+       $H_{0}$ = {nos décimales suivent une loi uniforme}.
+\\
+\\
+De plus : 
+\\
+\\
+     -\textit{r} sera fixé à 10, car nous considérerons une classe par digit.
+     \\
+     -\textit{N$p_{i}$} sera fixé à 100 000.
+     \\ 
+     -Quant à \textit{$n_{i}$}, ses différentes valeurs seront issues du nombre d'occurrence observés dans l'histogramme présenté précédemment.
+     \\
+     -$\chi^{2}_{9,\alpha-1}$ où 9 est le degré de liberté calculé en faisant \textit{r}-1 (nombre de classes -1).
+\\
 
 Voici les différents résultats obtenus en fonction de différentes valeurs pour $\alpha$.
 \\
@@ -136,54 +179,97 @@ Voici les différents résultats obtenus en fonction de différentes valeurs pou
 	\hline 
 \end{longtable}
 
-On peut constater que les tests réussis, nous sommes donc confortés dans notre supposition qui était que les décimales de $\pi$ suivent une loi uniforme.
+Nous pouvons constater que tous les tests ont réussi, nous sommes donc confortés dans notre supposition qui était que les décimales de $\pi$ suivent une loi uniforme.
 \\
 
 \subsection{Test du Poker}
-Une fois le test du $\chi^{2}$ effectué, passons maintenant à un autre test qui va s'appuyer sur ce dernier, le test du Poker. Pour ce faire, nous allons diviser notre million de décimales en 200 000 blocs contenant chacun 5 décimales. Nous dirons que chaque bloc contient une séquence.
+Une fois le test du $\chi^{2}$ effectué, passons maintenant à un autre test qui va s'appuyer sur ce dernier, le test du Poker. 
 \\
 \\
-Une fois les blocs obtenus, nous allons les classer en fonction du \textit{nombre} de digit différents par bloc. Ce \textit{nombre} est appelé \textit{r} et est compris entre 1 et 5.
+Premièrement, nous allons diviser notre million de décimales en 200 000 blocs contenant chacun 5 décimales. Nous dirons que chaque bloc contient une séquence.
 \\
-En effet, une séquence peut seulement contenir un digit différent ( par exemple : 11111) mais également 5 digits différents (12345).
 \\
-Nous allons désormais passer au calcul du $\chi^{2}$ en se basant sur le nombre de \textit{Stirling} pour
-effectuer la comparaison. Ce dernier se définit comme étant le \textit{nombre de manières possibles de constituer r paquets avec k nombres}.
+Une fois les blocs obtenus, nous allons les classer en fonction du nombre de digit différents par bloc. Ce nombre est appelé \textit{r} et est compris entre 1 et 5.
 \\
-Par le rappel théorique (\textit{voir cours}), nous obtenons $P_{r}$, la probabilité d'avoir \textit{r}.
-
+En effet, une séquence peut ne contenir qu'un digit différent (par exemple : 11111) mais également 5 digits différents (12345).
+\\
+\\
+Ensuite, nous passerons au calcul du $\chi^{2}$ afin de comparer les occurrences obtenues pour chaque \textit{r} avec les occurrences théoriques.
+\\
+\\
+Afin d'obtenir les occurrences théorique, nous allons devoir calculer $P_{r}$, autrement dit, la probabilité d'avoir \textit{r}.
 	\begin{center}
-		\includegraphics[scale=0.60]{Archives/Images/probaR}
+		\includegraphics[scale=0.40]{Archives/Images/probaR}
 	\end{center}
 
-Avec \textbf{K} la longueur de la séquence , \textbf{d} le nombre de digits possibles et enfin \textbf{r}
-définis plus haut.
+Avec :
 \\
-Pour effectuer nos calculs, nous fixerons \textbf{K} à 5 et \textbf{d} à 10.
 \\
-Une fois les probabilités obtenues, multiplions ces dernières par le nombre de paquet (200 000).
-
-\centering
-	\begin{tabular}{|r|r|r|}
-		\hline
-		r & valeur théorique & valeur calculée\\
-		\hline
-		1 & 20 & 13\\
-		2 & 2700 & 2644\\
-		3 & 36000 & 36172\\
-		4 & 100800 & 100670\\
-		5 & 60480 & 60501\\
-		\hline
-	\end{tabular}
-
+	-\textit{K} la longueur de la séquence.
+	\\
+	-\textbf{d} le nombre de digits possibles.
+	 \\
+	-\textbf{r} le nombre de digits différents.
+\\
+\\
+\textbf{Remarque} : nous pouvons constater que $P_{r}$ se base sur le nombre de \textit{Stirling}.
+\\
+Ce dernier se définit comme étant le \textit{nombre de manières possibles de constituer r paquets avec k nombres}.
 
 	\begin{center}
-		\includegraphics[scale=0.30]{Archives/Images/histo_poker}
+		\includegraphics[scale=0.40]{Archives/Images/stirling}
 	\end{center}
 
+Les valeurs suivantes ont pu facilement être déterminées par les explications ci-dessus :
+\\
+\\
+	-\textit{K} = 5.
+	\\
+	-\textbf{d} = 10.
+\\
+\\
+Une fois $P_{r}$ calculé pour chaque \textit{r}, multiplions ces dernières par le nombre de paquet total (200 000) pour avoir les occurrences théoriques.
 
+\begin{longtable}{|c|c|c|c|c|c|c|c|c|c|}
+	\hline
+	& \multicolumn{3}{c|}{\textbf{Résultats}} \\ 
+	\hline 
+	\textit{r}  & Occurrence observée & Occurrence théorique \\
+	\hline 
+	1 & 13  & 20\\
+	2 & 2644 & 2700 \\
+	3 & 36172 & 36000\\
+	4 & 100670 & 100800\\
+	5 & 60501  & 60480\\ 
+	\hline 
+\end{longtable}
+
+\newpage
+	\begin{figure}[h!]
+		\hbox to\hsize{\hss	\includegraphics[scale=0.40]{Archives/Images/histo_poker}\hss}
+		\caption{\label{toucan}}
+	\end{figure}
+
+Après avoir adapté les différents paramètres, passons désormais au test de $\chi^{2}$
+\begin{longtable}{|c|c|c|c|c|c|c|c|c|c|}
+	\hline
+	& \multicolumn{3}{c|}{\textbf{Résultats}} \\ 
+	\hline 
+	\textbf{$\alpha$}  & $K_{n}$ & $\chi^{2}_{4,\alpha-1}$ & \textbf{Resultat} \\ 
+	\hline 
+	$$0.001$$ & 4.608 & 18.467 & Reussite\\ 
+	\hline 
+	$$0.025$$ & 4.608 & 11.143 & Reussite\\ 
+	\hline 
+	$$0.1$$ & 4.608 & 7.779 & Reussite \\ 
+	\hline 
+\end{longtable}
+
+Encore une fois, tous les tests ont réussis.
+\\
 \subsection{Test du collectionneur de coupons}
 Le dernier test que nous allons employer repose sur le principe suivant. 
+\\
 \\
 Tout d'abord, nous allons parcourir les décimales de $\pi$ avec pour objectif de construire des séquences.
 Une séquence étant construite dès que l'on a parcouru une fois tous les digits possible (de 0 à 9 compris).
@@ -191,22 +277,31 @@ Il suffit ensuite de recommencer la procédure avec les décimales suivantes.
 \\
 On peut facilement comprendre que nous obtiendrons des séquences avec des tailles différentes.
 \\
-
-Afin de vérifier si nos séquences suivent bien une loi uniforme, nous devons tout d'abord calculé la probabilité $S_{r}$, autrement dit, la probabilité d'avoir une séquence de taille \textit{r} ayant tous nos digits est donnée par la formule suivante :
+Une fois fait, nous comparerons les occurrences observées pour chaque taille de séquence avec celles théorique grâce au test de \textbf{$\chi^{2}$}.
+\\
+\\
+Afin d'obtenir les occurrences théoriques, nous devons tout d'abord calculé la probabilité $S_{r}$, autrement dit, la probabilité d'avoir une séquence de taille \textit{r} ayant tous nos digits est donnée par la formule suivante :
 
 	\begin{center}
 		\includegraphics[scale=0.40]{Archives/Images/coupons}
 	\end{center}
 
-d représente le nombre de digits possibles, ici, il sera égal à 10.
+Avec :
+\\
+	-\textit{d} représente le nombre de digits possibles, ici, il sera égal à 10.
+	\\
+	-\textit{r} la taille de la séquence.
+\\
+\\
 Afin d'obtenir la valeur théorique pour chaque taille de séquence \textit{$ r_{i} $}, il suffit de multiplier la probabilité $S_{r_{i}}$  par le nombre total de séquences obtenues.
 \\
 
-La dernière étape de notre test consistera à comparer cette valeur théorique à notre valeur obtenue à l'aide du test du $\chi^{2}$.
 
-Nos longueurs de séquences formeront nos classes pour le test de $\chi^{2}$. Nous avons 100 classes, cependant, les séquences ayant une taille allant de 1 à 9 ont une valeur théorique et observée de 0. Elles sont donc inutiles à prendre en considération pour le test de $\chi^{2}$.  Le degré de liberté sera donc égal à 91-1 ($\chi^{2}_{91,\alpha-1}$).
+Nos longueurs de séquences formeront nos classes pour le test de $\chi^{2}$. Nous avons 100 classes, cependant, les séquences ayant une taille allant de 1 à 9 ont une valeur théorique et observée de 0. Elles sont donc inutiles à prendre en considération pour le test de $\chi^{2}$.
+\\
+Le degré de liberté sera donc égal à 91-1($\chi^{2}_{90,\alpha-1}$).
 \newpage
-\begin{figure}[h]
+\begin{figure}[h!]
 	\centering
 	\begin{tabular}{|r|r|r|}
 		\hline
@@ -259,7 +354,7 @@ Nos longueurs de séquences formeront nos classes pour le test de $\chi^{2}$. No
 \end{figure}
 
 \newpage
-\begin{figure}[h]
+\begin{figure}[h!]
 	\centering
 	\begin{tabular}{|r|r|r|}
 		\hline
@@ -304,7 +399,7 @@ Nos longueurs de séquences formeront nos classes pour le test de $\chi^{2}$. No
 	\caption{Tableau de Test du CDC : Les décimales de Pi 3}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[h!]
 	\centering
 	\begin{tabular}{|r|r|r|}
 		\hline
@@ -329,11 +424,11 @@ Nos longueurs de séquences formeront nos classes pour le test de $\chi^{2}$. No
 	\end{tabular}
 	\caption{Tableau de Test du CDC : Les décimales de Pi 3}
 \end{figure}
-
 \newpage
 Nous pouvons constater que le tableau affiche les résultats à partir des séquences de longueur 10. En effet, il est inutile de prendre en considération les séquences de longueur inférieure à 10 car il est impossible de trouver une séquence contenant les 10 digits différents (0 à 9) si la séquence a une longueur inférieure à 10.
-
 \\
+\\
+Voici les résultats obtenues une fois le test de $\chi^{2}$ effectué :
 \begin{longtable}{|c|c|c|c|c|c|c|c|c|c|}
 	\hline
 	& \multicolumn{3}{c|}{\textbf{Résultats}} \\ 
@@ -347,6 +442,12 @@ Nous pouvons constater que le tableau affiche les résultats à partir des séqu
 	$$0.1$$ & 78.792 & 107.57 & Reussite \\ 
 	\hline 
 \end{longtable}
+
+\subsection{Conclusion}
+Tous les tests qui ont été effectués et qui avaient pour but de déterminer si les décimales de $\pi$ suivaient bien une loi uniforme ont été concluants. Et ce, malgré les différentes marges d'erreurs que nous avions définis avec le paramètre $\alpha$.
+\\
+\\
+Nous pouvons donc affirmer, que d'après ces tests, les décimales de $\pi$ suivent une loi uniforme.
 
 \section{Générateur de nombre pseudo-aléatoire}
 \subsection{Enonce}

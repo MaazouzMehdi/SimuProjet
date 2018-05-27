@@ -1,6 +1,7 @@
 import decimales_recuperator
 from sympy.functions.combinatorial.numbers import stirling
 from math import pow
+import khi2
 
 def proba(k,d,r) :
 
@@ -63,4 +64,5 @@ if __name__ == "__main__":
 	res = proba(5,10,4)
 	res = proba(5,10,5)
 	#createPaquet()
-	print(calculOccurences(createPaquet()))
+	#print(calculOccurences(createPaquet()))
+	print(khi2.khi2([13,2644,36172,100670,60501],[20,2700,36000,100800,60480]))
