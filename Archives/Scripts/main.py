@@ -14,9 +14,9 @@ logger = logging.getLogger()
 
 myGen=randomGenerator.PseudoRandomGenerator()
 # print(myGen.random())
-list=myGen.getRandomList(1000)
+list=myGen.getRandomList(10000)
 coupon_test(list)
-# test=[4,11,9,5,8,13,17,13,15,5]
+# test=[4,11,9,5,8,13, 17,13,15,5]
 # kolmotest(test)
 # histo=calculate_histo(list)
 # print(list)
