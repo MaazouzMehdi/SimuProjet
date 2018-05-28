@@ -11,7 +11,11 @@ from matplotlib.backends.backend_pdf import PdfPages
 import numpy
 
 """ Premiere partie : calcul du caractere pseudo aleatoire de pi """
-# decimales = decimales_recuperator.getDecimales()
+decimales = decimales_recuperator.getDecimales()
+#
+
+# Histogramme
+# histogrammes.prepareToHisto(decimales)
 #
 # #Khi2
 # occurrences_observer = khi2.getOccurences(decimales)
