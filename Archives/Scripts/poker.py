@@ -1,11 +1,13 @@
 import decimales_recuperator
-from sympy.functions.combinatorial.numbers import stirling
 from math import pow
 import khi2
+import util
 
-def proba(k,d,r) :
-
-	proba = stirling(k,r) * d
+def proba_r(k,d,r) :
+	
+	""" Compute the proba to get r (which represents the differents digits in a sequence) """
+	
+	proba = util.stirling(k,r) * d
 	i = 1
 	while ( i < r) :
 		proba = proba * (d-i)
@@ -13,17 +15,30 @@ def proba(k,d,r) :
 	proba = proba / (pow(d,k)*1.)
 	return proba
 
-def createPaquet() :
-	res = decimales_recuperator.toData()
+def create_sequences(decimales) :
+	
+	""" Create a set of sequences of 5 decimales """
 	paquets = []
 	compteur = 0
 	
-	for i in range(0,len(res),5) :
-		paquets.append(res[i:i+5])
+	for i in range(0,len(decimales),5) :
+		paquets.append(decimales[i:i+5])
 	
 	return paquets
 
-def calculOccurences(paquets) :
+def calcul_occurrences_theorique(k,d,number_of_sequences) :
+	
+	""" Compute the theoric occurrences for all r """
+	
+	res = []
+	for i in range(1,6) :
+		res.append(proba_r(k,d,i) * number_of_sequences)
+	return res
+	
+def calcul_occurences(paquets) :
+
+	""" Compute the occurrences of r for the all set of sequences """
+	
 	r = { 1:0, 2:0, 3:0, 4:0, 5:0 }
 	
 	for i in range(len(paquets)) :

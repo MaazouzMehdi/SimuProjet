@@ -1,5 +1,8 @@
 
-def toData () :
+def getDecimales() :
+
+	""" get decimales of pi from a file and put them in a list """
+	
 	fichier = open("../Enonce/pi6.txt", "r")
 	res = []
 	firstLine = True
@@ -15,7 +18,5 @@ def toData () :
 	return res
 
 if __name__ == "__main__":
-	res = toData()
-	print(len(res))
-	print(res[0:5])
+	all_decimales = getDecimales()
 
