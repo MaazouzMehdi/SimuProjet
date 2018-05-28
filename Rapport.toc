@@ -1,0 +1,18 @@
+\babel@toc {french}{}
+\contentsline {section}{\numberline {1}Introduction}{3}
+\contentsline {subsection}{\numberline {1.1}Logiciels utilis\IeC {\'e}s}{3}
+\contentsline {section}{\numberline {2}Etude de $\pi $ }{4}
+\contentsline {subsection}{\numberline {2.1}Approche Na\IeC {\"\i }ve}{4}
+\contentsline {subsection}{\numberline {2.2}Test de $\chi ^{2}$ }{5}
+\contentsline {subsubsection}{\numberline {2.2.1}Rappel Th\IeC {\'e}orique}{5}
+\contentsline {subsubsection}{\numberline {2.2.2}Mise en pratique}{6}
+\contentsline {subsection}{\numberline {2.3}Test du Poker}{6}
+\contentsline {subsection}{\numberline {2.4}Test du collectionneur de coupons}{8}
+\contentsline {subsection}{\numberline {2.5}Conclusion}{12}
+\contentsline {section}{\numberline {3}G\IeC {\'e}n\IeC {\'e}rateur de nombre pseudo-al\IeC {\'e}atoire}{13}
+\contentsline {subsection}{\numberline {3.1}Enonce}{13}
+\contentsline {subsection}{\numberline {3.2}Impl\IeC {\'e}mentation}{13}
+\contentsline {section}{\numberline {4}Comparaison des g\IeC {\'e}n\IeC {\'e}rateurs}{13}
+\contentsline {subsection}{\numberline {4.1}Approche Na\IeC {\"\i }ve}{13}
+\contentsline {subsection}{\numberline {4.2}Test de $\chi ^{2}$}{15}
+\contentsline {subsubsection}{\numberline {4.2.1}Mise en pratique}{16}

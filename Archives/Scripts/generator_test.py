@@ -20,10 +20,10 @@ def testchi2(value, alpha=0.05):
         chi+=math.pow(dif/den,2)
     critical = chi2.ppf(1-alpha,n-1)
     result = chi < critical
-    logging.debug("test chi2: chi= " + str(chi) + " critical= " + str(critical) + " result= " + str(result))
+    logging.debug("test chi2: chi= " + str(chi) + " critical= " + str(critical) + " result= " + str(result)+" alpha= "+str(alpha))
     return result
 
-def testchi2expected(value, expected, alpha=0.05):
+def testchi2expected(value, expected, alpha=0.05,test=""):
     n=(len(value))
     chi=0
     tot=0
@@ -34,7 +34,7 @@ def testchi2expected(value, expected, alpha=0.05):
         chi+=math.pow(diff,2)*1.0/expected[i]
     critical = chi2.ppf(1-alpha,n-1)
     result = chi < critical
-    logging.debug("test chi2: chi= " + str(chi) + " critical= " + str(critical) + " result= " + str(result))
+    logging.debug("test :"+test+" : chi= " + str(chi) + " critical= " + str(critical) + " result= " + str(result)+" alpha= "+str(alpha))
     return result
 
 def gapTest(value, a=0.0,b=0.5,t=10,alpha=0.05):
@@ -60,7 +60,7 @@ def gapTest(value, a=0.0,b=0.5,t=10,alpha=0.05):
     for i in range(t-1):
         len_expec_sequ[i]=n_gap*p*math.pow(1-p,i)
     len_expec_sequ[t-1]=n_gap*math.pow(1-p,t-1)
-    return testchi2expected(len_sequence,len_expec_sequ,alpha)
+    return testchi2expected(len_sequence,len_expec_sequ,alpha,"gap")
 
 
 
@@ -91,4 +91,4 @@ def coupon_test(value,d=10,t=45,alpha=0.05):
     for i in range(len(expected) - 1):
         expected[i] = complete_sequ*((math.factorial(d)/math.pow(d,(i + d)))*stirling((i+d)-1,d-1))
     expected[len(expected)-1]=complete_sequ*(1.0-(math.factorial(d)/math.pow(d,(len(expected)-1+d)-2))*stirling((len(expected)-1+d)-2,d))
-    return testchi2expected(curr_values,expected,alpha)
+    return testchi2expected(curr_values,expected,alpha,"coupon")

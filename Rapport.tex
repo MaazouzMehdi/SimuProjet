@@ -16,7 +16,7 @@
 \usepackage{url}
 \usepackage{array}
 \usepackage{longtable}
-
+\usepackage{varioref}
 
 
 \title{Simulation sur ordinateur \\ Première session : Rapport \\ Etude du caractère pseudo-aléatoire de $\pi$}
@@ -64,7 +64,7 @@ La deuxième partie concerne non seulement l'explication et l'implémentation de
 -Le logiciel libre \textbf{TexStudio 5.5.1} nous a permis de rédiger ce rapport.
 \\
 
--Notons enfin l'utilisation de modules de \textbf{Python} tel que \textbf{Math}, \textbf{Typing}, \textbf{Scipy} ou encore \textbf{Matplotlib}.
+-Notons enfin l'utilisation de modules de \textbf{Python} tel que \textbf{Math}, \textbf{Typing}, \textbf{Scipy}, \textbf{logging} ou encore \textbf{Matplotlib}.
 \\
 \\
 Certains de ces modules sont issus de librairies externes et peuvent nécessiter une installation. Nous conseillons de les installer via le gestionnaire de paquets \textit{pip3}. Attention, il se peut que l'installation requiert les droits administrateurs.
@@ -123,6 +123,7 @@ constitue pas une preuve.
 Passons maintenant à des tests plus complets.
 \\
 \subsection{Test de $\chi^{2}$ }
+\label{testchi}
 Le premier test que nous allons effectuer est le test du \textbf{$\chi^{2}$}. Ce dernier est un test statistique qui va permettre de vérifier si une série de données est susceptible de suivre une loi de probabilité.
 \\
 
@@ -458,7 +459,104 @@ La deuxième partie de notre projet consiste à implémenter un générateur de 
 de manière uniforme.
 
 \subsection{Implémentation}
-Nous savons que l'ordinateur est une machine déterministe. Cependant, nous pouvons faire ressortir une composante aléatoire en utilisant le temps écoulé, en millisecondes, depuis le $1^{er}$ Janvier 1970.
+Nous savons que l'ordinateur est une machine déterministe. 
+Mais étant donné que les premières décimales de  $\pi$ nous sont fournies, nous allons pouvoir nous en servir pour l'implémentation de notre générateur.
 \\
-Etant donné que les premières décimales de  $\pi$ nous sont fournies, nous allons pouvoir nous en servir pour l'implémentation de notre générateur.
+Tout d'abord, nous découpons les décimales de $\pi$ fournie en plus petit nombre de 8 chiffres que nous stockons dans un tableau. Nous avons ensuite besoin d'une \textit{seed} qui nous permettra de retomber sur les mêmes nombres lorsque la \textit{seed} est la même. Soit nous donnons cette \textit{seed} en paramètre lors de la création de l'objet \textit{PseudoRandomGenerator}, soit elle est générée à partir des secondes écoulée depuis  l'Epoch Unix.
+\\
+Cette \textit{seed} est ensuite coupée en deux et chaque morceau va servir d'index pour trouver une partie du nombre pseudo-aléatoire dans le tableau où nous avons stocké les fragment de décimale de $\pi$. Nous continuons la génération en concaténant un \textit{0.} et les deux morceaux trouvé dans le tableau. Grâce à la concaténation du \textit{0.} nous avons bien un nombre compris entre 0 et 1.
+
+\section{Comparaison des générateurs}
+\subsection{Approche Naïve}
+Nous allons tout d'abord regarder naïvement un histogramme qui nous permettra de nous faire une idée de la répartitions des valeurs des nombres généré.
+\\
+Pour ce faire, nous allons générer 1 000 000 nombres via notre générateur et via celui de python. Ensuite, les valeurs seront trié par écart de 0.1. Les figures 6 et 7 sont ces histogrammes et pour plus de lisibilité les résultats sont dans les table 6 et 7.
+\\
+Le nombre d'occurrence de chaque écart doit être d'environ 100 000 car nous avons 1 000 000 nombres réparti en 10 écart égaux.
+\begin{figure}[h!]
+		\hbox to\hsize{\hss	\includegraphics[scale=0.70]{Archives/Images/occurMYrandom}\hss}
+		
+		\hbox to\hsize{\hss	\includegraphics[scale=0.70]{Archives/Images/occurPYrandom}\hss}
+		
+	\end{figure}                                                                                                                                                                                                                                                                                                                                                                             
+\begin{table}[]
+\centering
+\caption{Résultat de notre générateur }
+
+\begin{tabular}{|l|l|l|l|}
+\hline
+        & \multicolumn{3}{l|}{Résultats}   \\ \hline
+écart   & Observé & Attendu & Erreur en \% \\ \hline
+0-0.1   & 10019   & 10000   & 0.019        \\ \hline
+0.1-0.2 & 9999    & 10000   & 0.001        \\ \hline
+0.2-0.3 & 10000   & 10000   & 0.0          \\ \hline
+0.3-0.4 & 9880    & 10000   & 0.12         \\ \hline
+0.4-0.5 & 10072   & 10000   & 0.072        \\ \hline
+0.5-0.6 & 10087   & 10000   & 0.087        \\ \hline
+0.6-0.7 & 9944    & 10000   & 0.056        \\ \hline
+0.7-0.8 & 10006   & 10000   & 0.006        \\ \hline
+0.8-0.9 & 9984    & 10000   & 0.016        \\ \hline
+0.9-1   & 10009   & 10000   & 0.009        \\ \hline
+\end{tabular}
+\end{table}
+\begin{table}[]
+\centering
+\caption{Résultat du générateur Python}
+
+\begin{tabular}{|l|l|l|l|}
+\hline
+        & \multicolumn{3}{l|}{Résultats}   \\ \hline
+écart   & Observé & Attendu & Erreur en \% \\ \hline
+0-0.1   & 9964    & 10 000   & 0.036        \\ \hline
+0.1-0.2 & 10025   & 10 000   & 0.025        \\ \hline
+0.2-0.3 & 10078   & 10 000   & 0.078        \\ \hline
+0.3-0.4 & 10021   & 10 000   & 0.021        \\ \hline
+0.4-0.5 & 10100   & 10 000   & 0.1          \\ \hline
+0.5-0.6 & 9976    & 10 000   & 0.024        \\ \hline
+0.6-0.7 & 9935    & 10 000   & 0.065        \\ \hline
+0.7-0.8 & 10072   & 10 000   & 0.072        \\ \hline
+0.8-0.9 & 9803    & 10 000   & 0.197        \\ \hline
+0.9-1   & 10026   & 10 000   & 0.026        \\ \hline
+\end{tabular}
+\end{table}
+\\\\
+Nous remarquons que les erreurs sont globalement moindre pour notre générateur. L'erreur maximale atteinte par celui-ci est de 0.12\%. Celle de notre générateur est de 0.197\%.
+Passons maintenant à des tests plus complets.
+\subsection{Test de $\chi^{2}$}
+Comme pour l'étude de $\pi$, nous utilisons en premier le test de $\chi^{2}$. Pour le rappel théorique voir \ref{testchi}
+\subsubsection{Mise en pratique}
+Partons désormais de notre hypothèse nulle :
+\\
+\\
+       $H_{0}$ = {nos nombres généré suivent une loi uniforme}.
+\\
+\\
+De plus : 
+\\
+\\
+     -\textit{r} sera fixé à 10, car nous prenons un classe tout les 0.1 d'écart.
+     \\
+     -\textit{N$p_{i}$} sera fixé à 10 000.
+     \\ 
+     -Quant à \textit{$n_{i}$}, ses différentes valeurs seront issues du nombre d'occurrence observés dans l'histogramme présenté précédemment.
+     \\
+     -$\chi^{2}_{9,\alpha-1}$ où 9 est le degré de liberté calculé en faisant \textit{r}-1 (nombre de classes -1).
+\\
+
+Les résultats suivant ont été obtenu pour un $\alpha$ valant 0.05. Pour notre générateur, nous obtenons $K_n =3.102$ et $\chi^{2}_{9,\alpha-1} = 16.9189$ ce qui nous permet de constater que le test est réussi.\\
+Pour le générateur de python, nous obtenons $K_n =6.7916$ et $\chi^{2}_{9,\alpha-1} = 16.9189$ ce qui nous permet de constater qu'ici aussi, le test est réussi.
+\\\\
+Pour compléter ce test, nous l'avons effectuer 100 fois sur les deux générateurs pour voir si il est toujours positif ou si il y a parfois des négatifs: voir \fullref{pourcentchi}
+\begin{table}[!h]
+\centering
+\caption{Pourcentage de réussite du test de $\chi^{2}$ }
+\label{pourcentchi}
+\begin{tabular}{l|l|l|}
+\cline{2-3}
+                                           & reussi & échec \\ \hline
+\multicolumn{1}{|l|}{notre générateur}     & 77     & 23    \\ \hline
+\multicolumn{1}{|l|}{générateur de python} & 95     & 5     \\ \hline
+\end{tabular}
+\end{table}
+\\ Nous remarquons que malgré des résultats plus intéressant lors de notre premier test, notre générateur a un taux d'échec fortement supérieur a celui de python.
 \end{document}

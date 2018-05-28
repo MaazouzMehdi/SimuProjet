@@ -62,18 +62,6 @@ class PseudoRandomGenerator(object):
         return seed
 
     def random(self):
-        # num=self.num_list[self.seed]
-        # val=math.pow(num,4)
-        # val=math.pow(num,3)*self.seed
-        # strval=str(int(num))
-        # res=float("0."+strval[1:])
-
-        # self.seed+=1
-        # if self.seed>=len(self.num_list):
-        #     self.seed
-        # while self.seed>1000000/self.split:
-        #     see=str(self.seed)+str(self.seed)
-        #     self.seed=int(see)
         i1=int(self.seed[-6:])%125000
         i2=int(self.seed[:-6])%125000
         res=self.num_list[i1]+self.num_list[i2]
