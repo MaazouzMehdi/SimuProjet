@@ -272,6 +272,7 @@ Après avoir adapté les différents paramètres, passons désormais au test de 
 Encore une fois, tous les tests ont réussis.
 \\
 \subsection{Test du collectionneur de coupons}
+\label{testcoll}
 Le dernier test que nous allons employer repose sur le principe suivant. 
 \\
 \\
@@ -553,10 +554,70 @@ Pour compléter ce test, nous l'avons effectuer 100 fois sur les deux générate
 \label{pourcentchi}
 \begin{tabular}{l|l|l|}
 \cline{2-3}
-                                           & reussi & échec \\ \hline
+                                           & réussi & échec \\ \hline
 \multicolumn{1}{|l|}{notre générateur}     & 77     & 23    \\ \hline
 \multicolumn{1}{|l|}{générateur de python} & 95     & 5     \\ \hline
 \end{tabular}
 \end{table}
 \\ Nous remarquons que malgré des résultats plus intéressant lors de notre premier test, notre générateur a un taux d'échec fortement supérieur a celui de python.
+\subsection{Test du gap}
+\subsubsection{Rappel théorique}
+Le test du gap permet de vérifier l'espace entre deux nombres du même intervalle.\\
+Tout d'abord, nous génèrerons des nombres avec les deux générateurs. Nous utiliserons les séries de nombres générée pour l'approche naïve.
+Il nous faut ensuite une intervalle $[a,b]\in[0,1]$ et nous marquons les nombres se trouvant dans celui-ci.\\ Il faut ensuite calculer les distances entre les nombres marqués(noté $r_i$).
+grâce à ces distances (gap en anglais), nous pouvons effectuer un test de $\chi^2$ avec comme valeur attendues:
+
+\[
+	r_i = N p (1-p)^i
+\] 
+\[
+	r_{>i} = N (1-p)^{i+1}
+\]
+avec N, le nombre de gap
+p, la probabilité d'être dans l'intervalle $[a,b]$.
+\subsubsection{Mise en pratique}
+Les résultats avec les deux séries de nombre généré pour l'approche naïve et un $\alpha=0.05$ sont: pour notre générateur  $K_n =5.372$ et $\chi^{2}_{9,\alpha-1} = 16.9189$. Le test est donc une réussite.
+Pour le générateur de python, nous obtenons $K_n =10.42723$ et $\chi^{2}_{9,\alpha-1} = 16.9189$ ce qui nous permet de constater qu'ici aussi, le test est réussi.\\
+Ici aussi, nous allons effectuer le test cent fois avec d'autres séries de nombres.
+
+\begin{table}[!h]
+\centering
+\caption{Pourcentage de réussite du test du gap }
+\label{pourcentgap}
+\begin{tabular}{l|l|l|}
+\cline{2-3}
+                                           & réussi & échec \\ \hline
+\multicolumn{1}{|l|}{notre générateur}     & 93     & 7    \\ \hline
+\multicolumn{1}{|l|}{générateur de python} & 93     & 7     \\ \hline
+\end{tabular}
+\end{table}
+Avec ce test du gap, nous remarquons que les deux générateurs sont similaire dans les résultats. 
+
+
+
+\subsection{Test du collectionneur de coupons}
+Comme pour l'étude de $\pi$, nous utilisons le test du collectionneur de coupons. Pour le rappel théorique voir \ref{testcoll}
+\subsubsection{Mise en pratique}
+Les résultats avec les deux séries de nombre généré pour l'approche naïve et un $\alpha=0.05$ sont: pour notre générateur  $K_n =40.0503$ et $\chi^{2}_{9,\alpha-1} = 48.6023$. Le test est donc une réussite.
+Pour le générateur de python, nous obtenons $K_n =52.0544$ et $\chi^{2}_{9,\alpha-1} = 48.6023$. Le test est donc ici un échec.\\
+
+\begin{table}[!h]
+\centering
+\caption{Pourcentage de réussite du test du collectionneur de coupon }
+\label{pourcentgap}
+\begin{tabular}{l|l|l|}
+\cline{2-3}
+                                           & réussi & échec \\ \hline
+\multicolumn{1}{|l|}{notre générateur}     & 99     & 1    \\ \hline
+\multicolumn{1}{|l|}{générateur de python} & 83     & 17     \\ \hline
+\end{tabular}
+\end{table}
+Nous remarquons que notre générateur a de meilleur résultat pour le test du collectionneur.
+\subsection{Interprétation}
+D'après les résultats des trois tests, nous remarquons que les deux générateurs  respectent bien une loi uniforme. \\De plus, nous remarquons que sur le test de  $\chi^2$, le générateur de python fait mieux alors qu'à contrario, notre générateur fait mieux sur le test du collectionneur de coupon.
+
+\section{Conclusion}
+Comme indiqué dans l'introduction, nous avons prouvé le caractère pseudo-aléatoire des décimales de $\pi$ et montré qu'ils suivent une loi uniforme.\\
+De plus, nous avons implémenté un générateur de loi uniforme et nous l'avons comparé avec le générateur par défaut de python.\\
+Grâce a ce projet, nous avons pu mettre en pratique différents concepts vu au cours tel que le test de $\chi^2$, le test du poker, du collectionneur de coupons et du gap.
 \end{document}

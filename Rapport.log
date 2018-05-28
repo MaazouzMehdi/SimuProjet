@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6630 64-bit) (preloaded format=pdflatex 2018.5.28)  28 MAY 2018 19:38
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6630 64-bit) (preloaded format=pdflatex 2018.5.28)  28 MAY 2018 21:51
 entering extended mode
 **./Rapport.tex
 (Rapport.tex
@@ -1318,12 +1318,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 272--274
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 275--288
+Underfull \hbox (badness 10000) in paragraph at lines 276--289
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 275--288
+Underfull \hbox (badness 10000) in paragraph at lines 276--289
 
  []
 
@@ -1331,15 +1331,15 @@ Underfull \hbox (badness 10000) in paragraph at lines 275--288
 <Archives/Images/coupons.png, id=66, 365.365pt x 116.435pt>
 File: Archives/Images/coupons.png Graphic file (type png)
 <use Archives/Images/coupons.png>
-Package pdftex.def Info: Archives/Images/coupons.png  used on input line 290.
+Package pdftex.def Info: Archives/Images/coupons.png  used on input line 291.
 (pdftex.def)             Requested size: 146.1434pt x 46.57317pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 293--302
+Underfull \hbox (badness 10000) in paragraph at lines 294--303
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 293--302
+Underfull \hbox (badness 10000) in paragraph at lines 294--303
 
  []
 
@@ -1348,16 +1348,16 @@ Underfull \hbox (badness 10000) in paragraph at lines 293--302
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [11]
-Underfull \hbox (badness 10000) in paragraph at lines 432--436
+Underfull \hbox (badness 10000) in paragraph at lines 433--437
 
  []
 
 
-Underfull \vbox (badness 10000) detected at line 448
+Underfull \vbox (badness 10000) detected at line 449
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 451--455
+Underfull \hbox (badness 10000) in paragraph at lines 452--456
 
  []
 
@@ -1366,25 +1366,25 @@ Underfull \hbox (badness 10000) in paragraph at lines 451--455
 File: Archives/Images/occurMYrandom.pdf Graphic file (type pdf)
 <use Archives/Images/occurMYrandom.pdf>
 Package pdftex.def Info: Archives/Images/occurMYrandom.pdf  used on input line 
-477.
+478.
 (pdftex.def)             Requested size: 323.76736pt x 242.82555pt.
 <Archives/Images/occurPYrandom.pdf, id=81, 462.52798pt x 346.89601pt>
 File: Archives/Images/occurPYrandom.pdf Graphic file (type pdf)
 <use Archives/Images/occurPYrandom.pdf>
 Package pdftex.def Info: Archives/Images/occurPYrandom.pdf  used on input line 
-479.
+480.
 (pdftex.def)             Requested size: 323.76736pt x 242.82555pt.
 
 
 LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 482.
+               Default added (so using `tbp') on input line 483.
 
 
 LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 502.
+               Default added (so using `tbp') on input line 503.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 471--525
+Underfull \hbox (badness 10000) in paragraph at lines 472--526
 
  []
 
@@ -1392,22 +1392,22 @@ Underfull \hbox (badness 10000) in paragraph at lines 471--525
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [13] [14]
-Underfull \hbox (badness 10000) in paragraph at lines 528--545
+Underfull \hbox (badness 10000) in paragraph at lines 529--546
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 528--545
+Underfull \hbox (badness 10000) in paragraph at lines 529--546
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 528--545
+Underfull \hbox (badness 10000) in paragraph at lines 529--546
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 528--545
+Underfull \hbox (badness 10000) in paragraph at lines 529--546
 
  []
 
@@ -1416,27 +1416,32 @@ Underfull \hbox (badness 10000) in paragraph at lines 528--545
 pdfTeX warning: pdflatex (file ./Archives/Images/occurPYrandom.pdf): PDF inclus
 ion: multiple pdfs with page group included in a single page
 >]
-Underfull \hbox (badness 10000) in paragraph at lines 546--562
+Underfull \hbox (badness 10000) in paragraph at lines 547--563
 
  []
 
-[16] (Rapport.aux)
+[16]
+Underfull \hbox (badness 10000) in paragraph at lines 601--603
+
+ []
+
+[17] [18] (Rapport.aux)
 
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 16012 strings out of 493305
- 304384 string characters out of 3129802
- 352324 words of memory out of 3000000
- 19188 multiletter control sequences out of 15000+200000
+ 16014 strings out of 493305
+ 304407 string characters out of 3129802
+ 352343 words of memory out of 3000000
+ 19190 multiletter control sequences out of 15000+200000
  62650 words of font info for 51 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  62i,10n,56p,497b,423s stack positions out of 5000i,500n,10000p,200000b,50000s
-{C:/Users/giuli/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/lm/lm-rm.en
-c}{C:/Users/giuli/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/lm/lm-mathi
-t.enc}{C:/Users/giuli/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/lm/lm-m
-athsy.enc}{C:/Users/giuli/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/lm/
+{C:/Users/giuli/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/lm/lm-maths
+y.enc}{C:/Users/giuli/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/lm/lm-r
+m.enc}{C:/Users/giuli/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/lm/lm-m
+athit.enc}{C:/Users/giuli/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/lm/
 lm-ec.enc}<C:/Users/giuli/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/
 lm/lmbx10.pfb><C:/Users/giuli/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/pub
 lic/lm/lmbx12.pfb><C:/Users/giuli/AppData/Local/Programs/MiKTeX 2.9/fonts/type1
@@ -1451,10 +1456,11 @@ ms/MiKTeX 2.9/fonts/type1/public/lm/lmr17.pfb><C:/Users/giuli/AppData/Local/Pro
 grams/MiKTeX 2.9/fonts/type1/public/lm/lmr7.pfb><C:/Users/giuli/AppData/Local/P
 rograms/MiKTeX 2.9/fonts/type1/public/lm/lmr8.pfb><C:/Users/giuli/AppData/Local
 /Programs/MiKTeX 2.9/fonts/type1/public/lm/lmri10.pfb><C:/Users/giuli/AppData/L
-ocal/Programs/MiKTeX 2.9/fonts/type1/public/lm/lmsy7.pfb>
-Output written on Rapport.pdf (16 pages, 349589 bytes).
+ocal/Programs/MiKTeX 2.9/fonts/type1/public/lm/lmsy10.pfb><C:/Users/giuli/AppDa
+ta/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/lmsy7.pfb>
+Output written on Rapport.pdf (18 pages, 359481 bytes).
 PDF statistics:
- 218 PDF objects out of 1000 (max. 8388607)
+ 228 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  53 words of extra memory for PDF output out of 10000 (max. 10000000)
 

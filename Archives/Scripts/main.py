@@ -42,41 +42,41 @@ logging.basicConfig( level = logging.DEBUG)
 logger = logging.getLogger()
 
 
+#
+# myGen=randomGenerator.PseudoRandomGenerator()
+# # # print(myGen.random())
+# list=myGen.getRandomList(100000)
+# list=randomGenerator.getPythonRandomList(100000)
+# histo=calculate_histo(list)
+# plt.hist(list,10,color = 'red',edgecolor = 'black')
 
-myGen=randomGenerator.PseudoRandomGenerator()
-# # print(myGen.random())
-list=myGen.getRandomList(100000)
-list=randomGenerator.getPythonRandomList(100000)
-histo=calculate_histo(list)
-plt.hist(list,10,color = 'red',edgecolor = 'black')
-
-
-plt.ylabel("Nombre d'occurence")
-plt.title("Nombre d'occurence des nombres généré par notre générateur ")
-plt.xlabel("Ecart (par 0.1)")
-plt.axis([0,1,9500,10500])
-pp = PdfPages('multipage.pdf')
-pp.savefig()
-pp.close()
-plt.show()
-print(histo)
-pourcen=[0]*10
-for i in range(10):
-    pourcen[i]=(histo[i]-10000)/1000
-print(pourcen)
-
-testchi2(histo)
-
-gapTest(list)
-
-coupon_test(list)
-# res=[0,0]
-# for i in range(100):
-#     # myGen = randomGenerator.PseudoRandomGenerator()
-#     list = randomGenerator.getPythonRandomList(100000)
-#     histo = calculate_histo(list)
-#     if testchi2(histo):
-#         res[0]+=1
-#     else:
-#         res[1]+=1
-# print(res)
+#
+# plt.ylabel("Nombre d'occurence")
+# plt.title("Nombre d'occurence des nombres généré par notre générateur ")
+# plt.xlabel("Ecart (par 0.1)")
+# plt.axis([0,1,9500,10500])
+# pp = PdfPages('multipage.pdf')
+# pp.savefig()
+# pp.close()
+# plt.show()
+# print(histo)
+# pourcen=[0]*10
+# for i in range(10):
+#     pourcen[i]=(histo[i]-10000)/1000
+# print(pourcen)
+#
+# testchi2(histo)
+#
+# gapTest(list)
+#
+# coupon_test(list)
+res=[0,0]
+for i in range(100):
+    # myGen = randomGenerator.PseudoRandomGenerator()
+    list = randomGenerator.getPythonRandomList(100000)
+    # histo = calculate_histo(list)
+    if coupon_test(list):
+        res[0]+=1
+    else:
+        res[1]+=1
+print(res)

@@ -16,3 +16,10 @@
 \contentsline {subsection}{\numberline {4.1}Approche Na\IeC {\"\i }ve}{13}
 \contentsline {subsection}{\numberline {4.2}Test de $\chi ^{2}$}{15}
 \contentsline {subsubsection}{\numberline {4.2.1}Mise en pratique}{16}
+\contentsline {subsection}{\numberline {4.3}Test du gap}{16}
+\contentsline {subsubsection}{\numberline {4.3.1}Rappel th\IeC {\'e}orique}{16}
+\contentsline {subsubsection}{\numberline {4.3.2}Mise en pratique}{17}
+\contentsline {subsection}{\numberline {4.4}Test du collectionneur de coupons}{17}
+\contentsline {subsubsection}{\numberline {4.4.1}Mise en pratique}{17}
+\contentsline {subsection}{\numberline {4.5}Interpr\IeC {\'e}tation}{17}
+\contentsline {section}{\numberline {5}Conclusion}{18}
